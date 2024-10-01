@@ -1,0 +1,15 @@
+# evaluate_llm.py
+import math
+from transformers import Trainer
+
+# Load the fine-tuned model
+model_path = '../results/checkpoints'
+trainer = Trainer(model=model_path)
+
+# Evaluate the model
+eval_results = trainer.evaluate()
+eval_loss = eval_results['eval_loss']
+
+# Calculate perplexity
+perplexity = math.exp(eval_loss)
+print(f'Perplexity: {perplexity}')
